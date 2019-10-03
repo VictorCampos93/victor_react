@@ -1,42 +1,14 @@
 import React, { Component } from "react";
-import Componente2 from "./Componente2";
+import Home from './pages/home/Home'
+import Step1 from './pages/signup/step1/Step1';
+import SignUp from './pages/signup/Signup'
 
-class MeuH1 extends Component {
-  render(){
-    return<h1>Meu nome é {this.props.title}</h1>
-  }
-}
-
-class MeuBtn extends Component{
-  render(){
-    return <button onClick={ () => 
-      this.props.change(this.props.name)}>{this.props.name}</button>
-  }
-}
-
+import './template/assets/css/normalize.css'
+import './template/assets/css/template.css'
+import './template/assets/css/style.css'
 
 export default class App  extends Component{
-  constructor(props){
-    super(props);
-
-    this.state = {
-      actualBtn: ''
+    render(){
+        return <SignUp />
     }
-  }
-
-  handleChange= (name) => {
-    this.setState({
-      actualBtn: name
-    })
-  }
-  
-  render(){
-    console.log(this.state);
-    return (
-    <>
-      <MeuH1 title = {this.state.actualBtn}/>
-      <MeuBtn change={this.handleChange} name="Victor"/>
-    </>
-    );
-  }
 }
