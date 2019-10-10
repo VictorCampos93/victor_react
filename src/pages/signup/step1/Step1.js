@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Navbar from '../../components/Navbar'
 
 export default class Step1 extends Component{
 
@@ -9,7 +10,7 @@ export default class Step1 extends Component{
             name:'',
             date:'',
             cpf:0,
-            agree:'off'
+            agree:false
         }
     }
 
@@ -27,19 +28,21 @@ export default class Step1 extends Component{
 
     }
 
+    isChecked = () => {
+
+        this.setState(prevState => ({
+            agree: !prevState.agree
+        }))
+
+    }
+
 
     render(){
-        console.log(this.state);
+        //console.log(this.state);
         return(
             <div className="mainNoColor geral">
 
-        <nav>
-            <div id="logo"></div>
-            <input type="text" placeholder="O que você está procurando" />
-            <div id="signin">
-                <a className="itensHovered" href="">Entrar</a>
-            </div>
-        </nav>
+        <Navbar />
 
         <section id="formSection">
 
@@ -50,7 +53,7 @@ export default class Step1 extends Component{
             </div>
 
             <div className="formContainer">
-                <form action="./step2.html">
+                <form onSubmit={() => this.props.change(1,this.state)}>
                     <label className="cursorP" htmlFor="name">Nome</label>
                     <input onChange={(e)=>this.handleChange(e)} id="name" type="text" placeholder="Roberto Silva" />
                     <label className="cursorP" htmlFor="date">Data de nascimento</label>
@@ -58,7 +61,7 @@ export default class Step1 extends Component{
                     <label className="cursorP" htmlFor="cpf">CPF</label>
                     <input onChange={(e)=>this.handleChange(e)} id="cpf" type="text" placeholder="444.444.444-90" />
                     <div>
-                        <input onChange={(e)=>this.handleChange(e)} id="agree" type="checkbox" />
+                        <input onChange={(e)=>this.isChecked(e)} id="agree" type="checkbox" />
                         <label className="cursorP" htmlFor="agree">Li e concordo com os termos.</label>
                         <button className="btnBlue itensHovered" type="submit" href="#">Continuar</button>
                     </div>
